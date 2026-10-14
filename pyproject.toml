@@ -1,0 +1,15 @@
+[project]
+name = "comfyui-h3-clipcoloranchor"
+description = "Pull the colour distribution of a chained MiniMax H3 clip back to clip 1 (per-channel LAB CDF matching inside a person mask) so colour drift does not accumulate across clips."
+version = "0.1.0"
+license = { text = "MIT" }
+authors = [{ name = "kongo_jun" }]
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/lovemachine100/ComfyUI-H3-ClipColorAnchor"
+
+[tool.comfy]
+PublisherId = "kongo_jun"
+DisplayName = "ComfyUI-H3-ClipColorAnchor"
+Icon = ""

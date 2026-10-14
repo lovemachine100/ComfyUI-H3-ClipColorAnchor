@@ -1,0 +1,145 @@
+{
+  "1": {
+    "class_type": "LoadVideo",
+    "inputs": {
+      "file": "clip1.mp4"
+    }
+  },
+  "2": {
+    "class_type": "GetVideoComponents",
+    "inputs": {
+      "video": [
+        "1",
+        0
+      ]
+    }
+  },
+  "3": {
+    "class_type": "LoadVideo",
+    "inputs": {
+      "file": "clipN.mp4"
+    }
+  },
+  "4": {
+    "class_type": "GetVideoComponents",
+    "inputs": {
+      "video": [
+        "3",
+        0
+      ]
+    }
+  },
+  "5": {
+    "class_type": "LoadVideo",
+    "inputs": {
+      "file": "mask_clip1.mp4"
+    }
+  },
+  "6": {
+    "class_type": "GetVideoComponents",
+    "inputs": {
+      "video": [
+        "5",
+        0
+      ]
+    }
+  },
+  "7": {
+    "class_type": "ImageToMask",
+    "inputs": {
+      "image": [
+        "6",
+        0
+      ],
+      "channel": "red"
+    }
+  },
+  "8": {
+    "class_type": "LoadVideo",
+    "inputs": {
+      "file": "mask_clipN.mp4"
+    }
+  },
+  "9": {
+    "class_type": "GetVideoComponents",
+    "inputs": {
+      "video": [
+        "8",
+        0
+      ]
+    }
+  },
+  "10": {
+    "class_type": "ImageToMask",
+    "inputs": {
+      "image": [
+        "9",
+        0
+      ],
+      "channel": "red"
+    }
+  },
+  "11": {
+    "class_type": "H3ClipColorAnchor",
+    "inputs": {
+      "images": [
+        "4",
+        0
+      ],
+      "anchor_images": [
+        "2",
+        0
+      ],
+      "mask": [
+        "10",
+        0
+      ],
+      "anchor_mask": [
+        "7",
+        0
+      ],
+      "method": "histogram",
+      "match_lightness": true,
+      "strength": 1.0,
+      "mask_grow": 31,
+      "mask_feather": 31,
+      "sample_stride": 3,
+      "max_shift": 0.0
+    }
+  },
+  "12": {
+    "class_type": "CreateVideo",
+    "inputs": {
+      "images": [
+        "11",
+        0
+      ],
+      "audio": [
+        "4",
+        1
+      ],
+      "fps": 12
+    }
+  },
+  "13": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "12",
+        0
+      ],
+      "filename_prefix": "video/h3_clip_color_anchor",
+      "format": "auto",
+      "codec": "auto"
+    }
+  },
+  "14": {
+    "class_type": "PreviewAny",
+    "inputs": {
+      "source": [
+        "11",
+        1
+      ]
+    }
+  }
+}
